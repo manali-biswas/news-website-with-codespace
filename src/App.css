@@ -1,31 +1,42 @@
-.App {
-  text-align: center;
+.App > *:not(:last-child) {
+    margin-bottom: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.g-4 {
+    max-width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.halfheight {
+    height: 50%;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.wrapper {
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .marquee {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: marquee 10s linear infinite;
+  }
+  
+  .marquee p {
+    display: inline-block;
+    animation-delay: 0s;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translate3d(100%, 0, 0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
 
-.heart {
-  color: #ff0000;
-}
-
-.small {
-  font-size: 0.75rem;
-}
+  .footer {
+    min-width: 100%;
+  }
