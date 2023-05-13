@@ -1,17 +1,21 @@
 import './App.css';
 import NavbarComponent from './components/Navbar';
-import HeaderNews from './components/HeaderNews';
-import BreakingNewsheader from './components/BreakingNewsHeader';
-import NewsCardGrid from './components/NewsCardGrid';
 import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route}
+    from 'react-router-dom';
+import Home from './pages/Home';
+import Article from './pages/Article';
 
 function App() {
   return (
     <div className="App">
       <NavbarComponent />
-      <HeaderNews/>
-      <BreakingNewsheader/>
-      <NewsCardGrid/>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={<Home/>}/>
+          <Route path='/article' element={<Article/>}/>
+        </Routes>
+      </Router>
       <Footer/>
     </div>
   );

@@ -8,7 +8,6 @@ function BreakingNewsheader() {
                     <Navbar.Text className="wrapper justify-content-center">
                         <div className="marquee">
                             <p>Sample Breaking News running &nbsp;</p>
-                            <p>News 2</p>
                         </div>
                     </Navbar.Text>
             </Container>

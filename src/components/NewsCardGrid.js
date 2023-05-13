@@ -2,10 +2,17 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from "react-router-dom";
 
 function NewsCardGrid() {
+  const navigate = useNavigate();
+  
+  const articlePage = () => {
+    navigate("/article")
+  }
+
   return (
-    <Container className='d-flex justify-content-center'>
+    <Container className='d-flex justify-content-center' onClick={articlePage}>
       <Row xs={1} md={3} className='g-4 mr-0'>
         {Array.from({ length: 4 }).map((_, idx) => (
           <Col>
