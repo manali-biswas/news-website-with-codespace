@@ -1,9 +1,9 @@
 import { Container } from "react-bootstrap";
 
-function NewsTitleBlock() {
+function NewsTitleBlock(props) {
     return (
         <Container className="bg-info text-center">
-            <h1>Dummy News Title</h1>
+            <h1>{props.title}</h1>
         </Container>
     )
 }
