@@ -43,9 +43,9 @@ function Home(props) {
         }
     }), [keyword, props])
 
-    // useEffect(()=>{
-    //     loadData()
-    // }, [loadData])
+    useEffect(()=>{
+        loadData()
+    }, [loadData])
 
     if(isLoading) {
         return <Loader/>
