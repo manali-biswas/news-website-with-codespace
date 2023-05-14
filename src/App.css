@@ -40,3 +40,11 @@
   .footer {
     min-width: 100%;
   }
+
+  .h-70 {
+    height: 70%;
+  }
+
+  .App {
+    height: 100%;
+  }

@@ -5,12 +5,14 @@ import NewsCardGrid from "../components/NewsCardGrid";
 import NewsArticleSchema from "../models/NewsArticleSchema";
 import axios from "axios";
 import Query from "../models/Query";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getApiKey } from "../utils/Utils";
+import Loader from "../components/Loader";
 
 function Home(props) {
 
     const [news, setNews] = useState([])
+    const [isLoading, setLoading] = useState(true)
     const location = useLocation()
     var pathname = location.pathname
     if(pathname.length === 1)
@@ -19,29 +21,12 @@ function Home(props) {
     }
     const keyword = pathname.substring(1)
 
-    useEffect(()=>{
-        loadData()
-    }, [])
-
-    const loadData = () => axios.get("https://gnews.io/api/v4/search", {
+    const loadData = useCallback(() => axios.get("https://gnews.io/api/v4/search", {
         params: new Query(getApiKey(), keyword)
     })
     .then(response => {
         if(response.status === 200) {
-            setNews(
-                response.data.articles.map(
-                    (article) => new NewsArticleSchema(
-                        article.title,
-                        article.description,
-                        article.content,
-                        article.url,
-                        article.image,
-                        article.publishedAt,
-                        article.source
-                    )
-                )
-            )
-            props.newsSetter(response.data.articles.map(
+            const newsResponse = response.data.articles.map(
                 (article) => new NewsArticleSchema(
                     article.title,
                     article.description,
@@ -51,9 +36,20 @@ function Home(props) {
                     article.publishedAt,
                     article.source
                 )
-            ))
+            )
+            setNews(newsResponse)
+            props.newsSetter(newsResponse)
+            setLoading(false)
         }
-    })
+    }), [keyword, props])
+
+    // useEffect(()=>{
+    //     loadData()
+    // }, [loadData])
+
+    if(isLoading) {
+        return <Loader/>
+    }
 
     return (
         <>
