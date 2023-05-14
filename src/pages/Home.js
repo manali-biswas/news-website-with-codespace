@@ -20,6 +20,7 @@ function Home(props) {
         pathname = "/general"
     }
     const keyword = pathname.substring(1)
+    console.log(keyword)
 
     const loadData = useCallback(() => axios.get("https://gnews.io/api/v4/search", {
         params: new Query(getApiKey(), keyword)
